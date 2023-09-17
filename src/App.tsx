@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Podcast } from './pages/Podcast';
 import { Episode } from './pages/Episode';
@@ -7,11 +7,13 @@ export const App = () => {
   return (
     <>
       <BrowserRouter>
-        <div className="flex flex-col gap-2 max-w-3xl m-auto">
+        <div className="flex flex-col gap-4 max-w-3xl m-auto">
           <header>
-            <h1 className="text-2xl">
-              Podcaster
-            </h1>
+            <Link to="/">
+              <h1 className="inline-block text-2xl font-bold text-blue-600">
+                Podcaster
+              </h1>
+            </Link>
           </header>
           <Routes>
             <Route path={'/'} element={<Home />} />
