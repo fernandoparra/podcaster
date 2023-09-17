@@ -1,8 +1,8 @@
-import { EpisodeApi } from '../../interfaces/api';
+import { Episode } from '../../interfaces/podcasts';
 import { Card } from '../Card';
 
 export interface EpisodePlayerProps {
-  episode: EpisodeApi;
+  episode: Episode;
 };
 
 export const EpisodePlayer = ({episode}: EpisodePlayerProps) => {
@@ -10,7 +10,7 @@ export const EpisodePlayer = ({episode}: EpisodePlayerProps) => {
     <Card>
       <div className="flex flex-col gap-4">
         <div className="text-lg font-semibold">
-          {episode.trackName}
+          {episode.name}
         </div>
         <div
           className="text-xs whitespace-pre-wrap"
@@ -23,7 +23,7 @@ export const EpisodePlayer = ({episode}: EpisodePlayerProps) => {
             className="w-full"
             controls
           >
-            <source src={episode.episodeUrl} type="audio/mp3" />
+            <source src={episode.url} type="audio/mp3" />
           </audio>
         </div>
       </div>

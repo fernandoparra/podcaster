@@ -9,7 +9,7 @@ export const Home = () => {
   const [podcasts, setPodcasts] = useState(data.podcasts);
 
   useEffect(() => {
-    console.log('data', data.podcasts);
+    // console.log('data', data.podcasts);
     setPodcasts(data.podcasts);
   }, [data.podcasts ]);
 
@@ -17,8 +17,8 @@ export const Home = () => {
     setSearch(search);
     const searchLower = search.toLowerCase();
     const filtered = data.podcasts?.filter(podcast => {
-      return podcast['im:name'].label.toLowerCase().includes(searchLower) ||
-        podcast['im:artist'].label.toLowerCase().includes(searchLower);
+      return podcast.name.toLowerCase().includes(searchLower) ||
+        podcast.artist.toLowerCase().includes(searchLower);
     });
     setPodcasts(filtered);
   };
@@ -38,12 +38,12 @@ export const Home = () => {
       }
       <div className="grid gap-x-8 gap-y-16 grid-cols-2 md:grid-cols-4 justify-center">
         {podcasts?.map(podcast =>
-          <div key={podcast.id.attributes['im:id']} className="mt-8">
+          <div key={podcast.id} className="mt-8">
             <PodcastResult
-              id={podcast.id.attributes['im:id']}
-              name={podcast['im:name'].label}
-              artist={podcast['im:artist'].label}
-              image={podcast['im:image'][2].label}
+              id={podcast.id}
+              name={podcast.name}
+              artist={podcast.artist}
+              image={podcast.image}
             />
           </div>
         )}

@@ -12,9 +12,9 @@ export const Podcast = () => {
       <div className="w-full md:w-1/3 shrink-0">
         {data.podcast &&
           <PodcastDetail
-            name={data.podcast.collectionName}
-            artist={data.podcast.artistName}
-            image={data.podcast.artworkUrl600}
+            name={data.podcast.name}
+            artist={data.podcast.artist}
+            image={data.podcast.image}
             description={data.podcast.description}
           />
         }

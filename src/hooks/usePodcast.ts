@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { EpisodeApi } from '../interfaces/api';
+import { Episode } from '../interfaces/podcasts';
 
 export const usePodcast = (podcastId: string) => {
-  const [podcast, setPodcast] = useState<EpisodeApi>();
-  const [episodes, setEpisodes] = useState<EpisodeApi[]>();
+  const [podcast, setPodcast] = useState<Episode>();
+  const [episodes, setEpisodes] = useState<Episode[]>();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -12,8 +13,12 @@ export const usePodcast = (podcastId: string) => {
       try {
         const response = await fetch(`https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`);
         const data = await response.json();
-        setPodcast(data.results?.[0]);
-        setEpisodes(data.results?.slice(1));
+
+        const mapPodcast = new Episode(data.results?.[0]);
+        const mapEpisodes = data.results?.slice(1).map((episode: EpisodeApi) => new Episode(episode));
+
+        setPodcast(mapPodcast);
+        setEpisodes(mapEpisodes);
       } catch (error) {
         console.error(error);
       } finally {

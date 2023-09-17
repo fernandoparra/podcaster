@@ -1,10 +1,10 @@
-import { EpisodeApi } from '../../interfaces/api';
+import { Episode } from '../../interfaces/podcasts';
 import { formatDate, formatTime } from '../../services/date';
 import { Card } from '../Card';
 import { Link } from 'react-router-dom';
 
 export interface EpisodesProps {
-  episodes: EpisodeApi[];
+  episodes: Episode[];
 }
 
 export const Episodes = ({episodes}: EpisodesProps) => {
@@ -30,22 +30,19 @@ export const Episodes = ({episodes}: EpisodesProps) => {
           </div>
           {episodes.map((episode) =>
             <Link
-              key={episode.trackId}
-              to={`episode/${episode.trackId}`}
+              key={episode.id}
+              to={`episode/${episode.id}`}
               className="even:bg-neutral-200 text-xs"
             >
-              <div
-                key={episode.trackId}
-                className="flex gap-4 justify-between px-4 py-2 border-t border-neutral-300"
-              >
+              <div className="flex gap-4 justify-between px-4 py-2 border-t border-neutral-300">
                 <div className="grow">
-                  {episode.trackName}
+                  {episode.name}
                 </div>
                 <div className="w-1/5 shrink-0 text-right">
                   {formatDate(episode.releaseDate)}
                 </div>
                 <div className="w-1/5 shrink-0 text-right">
-                  {formatTime(episode.trackTimeMillis)}
+                  {formatTime(episode.duration)}
                 </div>
               </div>
             </Link>
