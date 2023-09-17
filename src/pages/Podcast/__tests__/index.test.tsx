@@ -1,14 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { Podcast } from '../index';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { Episode } from '../../../interfaces/podcasts';
 import { podcast } from '../../../__mocks__/podcast';
-const mockPodcast = podcast;
+import { EpisodeApi } from '../../../interfaces/api';
+const podcastApi = podcast.results as unknown as EpisodeApi[];
+const mockPodcast = new Episode(podcastApi[0]);
+const mockEpisodes = podcastApi.slice(1).map(episode => new Episode(episode));
 
 jest.mock('../../../hooks/usePodcast', () => ({
   usePodcast: () => ({
     data: {
-      podcast: mockPodcast.results[0],
-      episodes: mockPodcast.results.slice(1),
+      podcast: mockPodcast,
+      episodes: mockEpisodes,
     },
     loading: false,
   }),

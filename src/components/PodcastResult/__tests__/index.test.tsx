@@ -3,17 +3,19 @@ import { PodcastResult } from '../index';
 import { podcasts } from '../../../__mocks__/podcasts';
 import { Entry } from '../../../interfaces/api';
 import { BrowserRouter } from 'react-router-dom';
-const podcastMock = podcasts.feed.entry[1] as unknown as Entry;
+import { Podcast } from '../../../interfaces/podcasts';
+const podcastApi = podcasts.feed.entry[1] as unknown as Entry;
+const podcast = new Podcast(podcastApi);
 
 test('should render the podcast result', () => {
   render(
     <BrowserRouter>
       <PodcastResult
-        id={podcastMock.id.attributes['im:id']}
-        name={podcastMock['im:name'].label}
-        artist={podcastMock['im:artist'].label}
-        image={podcastMock['im:image'][2].label}
-        description={podcastMock.summary.label}
+        id={podcast.id}
+        name={podcast.name}
+        artist={podcast.artist}
+        image={podcast.image}
+        description={podcast.summary}
       />
     </BrowserRouter>
   );
@@ -25,11 +27,11 @@ test('should render the podcast result image', () => {
   render(
     <BrowserRouter>
       <PodcastResult
-        id={podcastMock.id.attributes['im:id']}
-        name={podcastMock['im:name'].label}
-        artist={podcastMock['im:artist'].label}
-        image={podcastMock['im:image'][2].label}
-        description={podcastMock.summary.label}
+        id={podcast.id}
+        name={podcast.name}
+        artist={podcast.artist}
+        image={podcast.image}
+        description={podcast.summary}
       />
     </BrowserRouter>
   );

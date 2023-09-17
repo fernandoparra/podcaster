@@ -2,15 +2,17 @@ import { render, screen } from '@testing-library/react';
 import { PodcastDetail } from '../index';
 import { podcast } from '../../../__mocks__/podcast';
 import { EpisodeApi } from '../../../interfaces/api';
-const podcastMock = podcast.results[0] as unknown as EpisodeApi;
+import { Episode } from '../../../interfaces/podcasts';
+const episodeApi = podcast.results[0] as unknown as EpisodeApi;
+const episode = new Episode(episodeApi);
 
 test('should render the podcast detail', () => {
   render(
     <PodcastDetail
-      name={podcastMock.collectionName}
-      artist={podcastMock.artistName}
-      image={podcastMock.artworkUrl600}
-      description={podcastMock.description}
+      name={episode.name}
+      artist={episode.artist}
+      image={episode.image}
+      description={episode.description}
     />
   );
   const episodesNumber = screen.getByText('by SiriusXM');
@@ -20,10 +22,10 @@ test('should render the podcast detail', () => {
 test('should render the podcast detail image', () => {
   render(
     <PodcastDetail
-      name={podcastMock.collectionName}
-      artist={podcastMock.artistName}
-      image={podcastMock.artworkUrl600}
-      description={podcastMock.description}
+      name={episode.name}
+      artist={episode.artist}
+      image={episode.image}
+      description={episode.description}
     />
   );
   const image = screen.getByRole('img');

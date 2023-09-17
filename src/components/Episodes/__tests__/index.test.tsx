@@ -1,9 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Episodes } from '../index';
 import { podcast } from '../../../__mocks__/podcast';
-import { EpisodeApi } from '../../../interfaces/api';
 import { BrowserRouter } from 'react-router-dom';
-const episodes = podcast.results.slice(1) as unknown as EpisodeApi[];
+import { Episode } from '../../../interfaces/podcasts';
+import { EpisodeApi } from '../../../interfaces/api';
+const episodesApi = podcast.results.slice(1) as unknown as EpisodeApi[];
+const episodes = episodesApi.map(episode => new Episode(episode));
 
 test('should render the episodes list', () => {
   render(

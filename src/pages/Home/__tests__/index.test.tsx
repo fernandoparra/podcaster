@@ -2,12 +2,15 @@ import { render, screen } from '@testing-library/react';
 import { Home } from '../index';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { podcasts } from '../../../__mocks__/podcasts';
-const mockPodcasts = podcasts;
+import { Entry } from '../../../interfaces/api';
+import { Podcast } from '../../../interfaces/podcasts';
+const podcastsApi = podcasts.feed.entry as unknown as Entry[];
+const mockPodcasts = podcastsApi.map(podcast => new Podcast(podcast));
 
 jest.mock('../../../hooks/usePodcasts', () => ({
   usePodcasts: () => ({
     data: {
-      podcasts: mockPodcasts.feed.entry,
+      podcasts: mockPodcasts,
     },
     loading: false,
   }),
