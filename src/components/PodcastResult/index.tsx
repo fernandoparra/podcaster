@@ -1,18 +1,29 @@
 import { Link } from 'react-router-dom';
 import { Card } from '../Card';
+import { useContext } from 'react';
+import { GlobalContext } from '../../contexts/global';
 
 export interface PodcastResultProps {
   id: string;
   name: string;
   artist: string;
   image: string;
-  description?: string;
+  description: string;
 }
 
 export const PodcastResult = ({id, name, artist, image, description}: PodcastResultProps) => {
+  const {setPodcastDescription} = useContext(GlobalContext);
+
+  const handlePodcastClick = () => {
+    console.log('podcast clicked', id);
+    setPodcastDescription(description);
+  };
 
   return (
-    <Link to={`/podcast/${id}`}>
+    <Link
+      to={`/podcast/${id}`}
+      onClick={handlePodcastClick}
+    >
       <Card>
           <div
             className="flex flex-col gap-2 items-center cursor-pointer"
@@ -28,11 +39,6 @@ export const PodcastResult = ({id, name, artist, image, description}: PodcastRes
                 Author: {artist}
               </div>
             </div>
-            {description &&
-              <div>
-                {description}
-              </div>
-            }
           </div>
       </Card>
     </Link>

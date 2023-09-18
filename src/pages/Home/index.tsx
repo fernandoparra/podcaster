@@ -1,12 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { PodcastResult } from '../../components/PodcastResult';
 import { Search } from '../../components/Search';
 import { usePodcasts } from '../../hooks/usePodcasts';
+import { GlobalContext } from '../../contexts/global';
 
 export const Home = () => {
-  const { data } = usePodcasts();
+  const { data, loading } = usePodcasts();
   const [search, setSearch] = useState('');
   const [podcasts, setPodcasts] = useState(data.podcasts);
+  const {setPageLoading} = useContext(GlobalContext);
+
+  useEffect(() => {
+    console.log('home loading', loading);
+    setPageLoading(loading);
+  }, [loading, setPageLoading]);
 
   useEffect(() => {
     setPodcasts(data.podcasts);
@@ -43,14 +50,10 @@ export const Home = () => {
               name={podcast.name}
               artist={podcast.artist}
               image={podcast.image}
+              description={podcast.summary}
             />
           </div>
         )}
-        {!data.podcasts &&
-          <div>
-            Loading...
-          </div>
-        }
       </div>
     </div>
   );

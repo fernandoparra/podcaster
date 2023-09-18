@@ -1,20 +1,16 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Podcast } from './pages/Podcast';
 import { Episode } from './pages/Episode';
+import { GlobalContextProvider } from './contexts/global';
+import { Header } from './components/Header';
 
 export const App = () => {
   return (
-    <>
+    <GlobalContextProvider>
       <BrowserRouter>
         <div className="flex flex-col gap-4 max-w-3xl m-auto">
-          <header>
-            <Link to="/">
-              <h1 className="inline-block text-2xl font-bold text-blue-600">
-                Podcaster
-              </h1>
-            </Link>
-          </header>
+          <Header />
           <Routes>
             <Route path={'/'} element={<Home />} />
             <Route path={'/podcast/:podcastId'} element={<Podcast />} />
@@ -22,6 +18,6 @@ export const App = () => {
           </Routes>
         </div>
       </BrowserRouter>
-    </>
+    </GlobalContextProvider>
   );
 };

@@ -26,7 +26,7 @@ export const PodcastDetail = ({name, artist, image, description}: PodcastDetailP
         {description &&
           <>
             <hr />
-            <div>
+            <div className="text-xs italic">
               {description}
             </div>
           </>
