@@ -16,9 +16,11 @@ export const usePodcast = (podcastId: string) => {
     const getPodcasts = async () => {
       setLoading(true);
       try {
-        if(localEpisodes && checkDifference(localEpisodes.date, CACHE_TIME)) {
-          setPodcast(localEpisodes.podcast);
-          setEpisodes(localEpisodes.episodes);
+        const validEpisodes = localEpisodes || {};
+        const validEpisode = validEpisodes[podcastId];
+        if(validEpisode && checkDifference(validEpisode.date, CACHE_TIME)) {
+          setPodcast(validEpisode.podcast);
+          setEpisodes(validEpisode.episodes);
           console.log('episodes from local storage');
         } else {
           const response = await fetch(getURL(`/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`));
@@ -28,9 +30,12 @@ export const usePodcast = (podcastId: string) => {
           const mapEpisodes = data.results?.slice(1).map((episode: EpisodeApi) => new Episode(episode));
           
           setLocalEpisodes({
-            date: new Date().toISOString(),
-            podcast: mapPodcast,
-            episodes: mapEpisodes,
+            ...validEpisodes,
+            [podcastId]: {
+              date: new Date().toISOString(),
+              podcast: mapPodcast,
+              episodes: mapEpisodes,
+            },
           });
 
           setPodcast(mapPodcast);
