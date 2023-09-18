@@ -6,7 +6,7 @@ export const Header = () => {
   const { pageLoading } = useContext(GlobalContext);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <header className="flex justify-between items-center">
         <Link to="/">
           <h1 className="inline-block text-2xl font-bold text-blue-600">
