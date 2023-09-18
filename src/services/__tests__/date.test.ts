@@ -9,6 +9,10 @@ test('should format time', () => {
   expect(formatTime(3470000)).toEqual('57:50');
 });
 
+test('should return 00:00 when ms is invalid', async () => {
+  expect(formatTime()).toEqual('00:00');
+});
+
 test('should return true if the time difference is less than ms', () => {
   const ms = 1000 * 60 * 60 * 24; // 1 day
 

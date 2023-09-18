@@ -3,7 +3,8 @@ export const formatDate = (date: string) => {
   return d.join('/');
 };
 
-export const formatTime = (ms: number) => {
+export const formatTime = (ms?: number) => {
+  if(!ms) return '00:00';
   let time = new Date(ms).toISOString().slice(11, 19);
   const [h, m, s] = time.split(':');
   if(Number(h) > 0) {
