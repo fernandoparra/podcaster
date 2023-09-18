@@ -9,9 +9,8 @@ export const Home = () => {
   const [podcasts, setPodcasts] = useState(data.podcasts);
 
   useEffect(() => {
-    // console.log('data', data.podcasts);
     setPodcasts(data.podcasts);
-  }, [data.podcasts ]);
+  }, [data.podcasts]);
 
   const handleSearch = (search: string) => {
     setSearch(search);

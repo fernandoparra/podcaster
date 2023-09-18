@@ -12,3 +12,10 @@ export const formatTime = (ms: number) => {
     return `${Number(m)}:${s}`;
   }
 };
+
+export const checkDifference = (date: string, ms: number) => {
+  const now = new Date();
+  const d = new Date(date);
+  const diff = now.getTime() - d.getTime();
+  return diff < ms;
+};
