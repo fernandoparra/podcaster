@@ -12,9 +12,9 @@ export const Search = ({search, onSearch}: SearchProps) => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <input
-        className="h-8 px-4 py-2 border border-gray-200 rounded-sm"
+        className="w-full h-8 p-2 border border-gray-200 rounded-sm text-xs"
         type="text"
         placeholder="Filter podcasts"
         value={search}

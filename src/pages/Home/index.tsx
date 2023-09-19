@@ -36,10 +36,12 @@ export const Home = () => {
           <div className="bg-blue-600 text-neutral-100 text-xs font-semibold px-1 rounded-sm">
             {podcasts.length}
           </div>
-          <Search
-            search={search}
-            onSearch={handleSearch}
-          />
+          <div className="w-1/3">
+            <Search
+              search={search}
+              onSearch={handleSearch}
+            />
+          </div>
         </div>
       }
       <div className="grid gap-x-8 gap-y-16 grid-cols-2 md:grid-cols-4 justify-center">
