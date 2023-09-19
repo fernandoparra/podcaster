@@ -21,7 +21,6 @@ export const usePodcast = (podcastId: string) => {
         if(validEpisode && checkDifference(validEpisode.date, CACHE_TIME)) {
           setPodcast(validEpisode.podcast);
           setEpisodes(validEpisode.episodes);
-          console.log('episodes from local storage');
         } else {
           const response = await fetch(getURL(`/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`));
           const data = await response.json();
@@ -40,7 +39,6 @@ export const usePodcast = (podcastId: string) => {
 
           setPodcast(mapPodcast);
           setEpisodes(mapEpisodes);
-          console.log('episodes from fetch');
         }
       } catch (error) {
         console.error(error);
