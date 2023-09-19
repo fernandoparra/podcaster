@@ -21,7 +21,7 @@ test('should return the url without proxy', async () => {
 
 test('should return the url with proxy', async () => {
   jest.mock('../../constants', () => ({
-    PROXY_URL: 'https://api.allorigins.win',
+    PROXY_URL: 'https://api.allorigins.win/raw?url=',
     API_URL: 'https://itunes.apple.com',
   }));
 
