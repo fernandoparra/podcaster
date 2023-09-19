@@ -1,6 +1,7 @@
 # Podcaster
 
-React application to browsing podcasts and playing podcast episodes.
+React application to browsing podcasts and playing podcast episodes.\
+[Demo](https://podcaster-lime.vercel.app/)
 
 ## Running the application
 
