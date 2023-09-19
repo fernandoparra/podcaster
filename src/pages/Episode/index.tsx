@@ -12,7 +12,6 @@ export const Episode = () => {
   const { podcastDescription, setPageLoading } = useContext(GlobalContext);
 
   useEffect(() => {
-    console.log('episode loading', loading);
     setPageLoading(loading);
   }, [loading, setPageLoading]);
 

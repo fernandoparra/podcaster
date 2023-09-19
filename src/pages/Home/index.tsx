@@ -11,7 +11,6 @@ export const Home = () => {
   const {setPageLoading} = useContext(GlobalContext);
 
   useEffect(() => {
-    console.log('home loading', loading);
     setPageLoading(loading);
   }, [loading, setPageLoading]);
 

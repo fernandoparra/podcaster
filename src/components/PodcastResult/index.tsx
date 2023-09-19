@@ -15,7 +15,6 @@ export const PodcastResult = ({id, name, artist, image, description}: PodcastRes
   const {setPodcastDescription} = useContext(GlobalContext);
 
   const handlePodcastClick = () => {
-    console.log('podcast clicked', id);
     setPodcastDescription(description);
   };
 

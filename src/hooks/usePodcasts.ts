@@ -17,7 +17,6 @@ export const usePodcasts = () => {
       try {
         if (localPodcasts && checkDifference(localPodcasts.date, CACHE_TIME)) {
           setPodcasts(localPodcasts.podcasts);
-          console.log('podcasts from local storage');
         } else {
           const response = await fetch(getURL(`/us/rss/toppodcasts/limit=100/genre=1310/json`));
           const data = await response.json();
@@ -28,7 +27,6 @@ export const usePodcasts = () => {
             podcasts: mapPodcasts,
           });
           setPodcasts(mapPodcasts);
-          console.log('podcasts from fetch');
         }
       } catch (error) {
         console.error(error);
