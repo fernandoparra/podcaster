@@ -26,8 +26,13 @@ export const PodcastDetail = ({name, artist, image, description}: PodcastDetailP
         {description &&
           <>
             <hr />
-            <div className="text-xs italic whitespace-pre-wrap">
-              {description}
+            <div className="flex flex-col gap-2 text-xs">
+              <div className="font-semibold">
+                Description:
+              </div>
+              <div className="italic whitespace-pre-wrap">
+                {description}
+              </div>
             </div>
           </>
         }

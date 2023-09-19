@@ -57,5 +57,5 @@ The project uses 2 files to set the environment variables:
 
 ## Versioning
 
-* [SemVer](http://semver.org/) for versioning
+* [SemVer](https://semver.org/) for versioning
 * [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages
